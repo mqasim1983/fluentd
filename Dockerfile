@@ -7,7 +7,8 @@ USER root
 RUN apk --no-cache add sudo build-base ruby-dev && \
 
     sudo -u fluent gem install fluent-plugin-secure-forward fluent-plugin-record-reformer fluent-plugin-s3 && \
-
+    mkdir -p /var/log/fluent/s3 && \
+    chmod 777 /var/log/fluent/s3 && \
     rm -rf /home/fluent/.gem/ruby/2.3.0/cache/*.gem && sudo -u fluent gem sources -c && \
     apk del sudo build-base ruby-dev
 
